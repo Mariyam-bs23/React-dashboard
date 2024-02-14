@@ -41,7 +41,24 @@ const Dashboard = () => {
                     </div>
                     <div className="mt-10">
                         <h2>Earnings</h2>
-                        <LineChart/>
+                        <LineChart
+                         labels={['January','February','June', 'July', 'August','September','October','November','December']}
+                         dataset={[
+                           {
+                             id: 1,
+                             label: 'First Half',
+                             data: [50, 40, 55 ,30 ,45,35,20.70,73,80],
+                             borderColor: 'rgb(75, 192, 192)',
+                               tension: 0.5
+                           },
+                           {
+                             id: 2,
+                             label: 'Top Gross',
+                             data: [30, 25, 40,60,110,55,70,64,90,80 ,40,50],
+                             borderColor: 'rgb(56,56,56)',
+                             tension: 0.5
+                           },
+                         ]}/>
                     </div>
                     <div className="mt-10">
                         <h2>Top selling products</h2>
