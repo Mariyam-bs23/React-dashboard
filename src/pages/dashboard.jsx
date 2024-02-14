@@ -1,13 +1,14 @@
 import Header from "../components/header";
 import SideNav from "../components/side-nav";
 import StatisticsCard from "../components/statistics-card";
+import LineChart from "../components/line-chart";
 
 const Dashboard = () => {
     return(
         <div className="pl-52">
             <SideNav/>
             <Header/>
-            <div className="px-8 mt-8 grid grid-cols-12">
+            <div className="px-8 mt-8 grid grid-cols-12 gap-6<Chart chartData={this.state.chartData} displayLegend={false} />">
                 <div className="col-span-8">
                     <div className="grid grid-cols-3 gap-6">
                         <StatisticsCard 
@@ -38,9 +39,16 @@ const Dashboard = () => {
                                 percentage : "+23%"
                                 }}/>
                     </div>
+                    <div className="mt-10">
+                        <h2>Earnings</h2>
+                        <LineChart/>
+                    </div>
+                    <div className="mt-10">
+                        <h2>Top selling products</h2>
+                    </div>
                 </div>
                 <div className="col-span-4">
-
+               
                 </div>
             </div>
         </div>
