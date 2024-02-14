@@ -2,6 +2,7 @@ import Header from "../components/header";
 import SideNav from "../components/side-nav";
 import StatisticsCard from "../components/statistics-card";
 import LineChart from "../components/line-chart";
+import BasicTable from "../components/table";
 
 const Dashboard = () => {
     return(
@@ -62,6 +63,7 @@ const Dashboard = () => {
                     </div>
                     <div className="mt-10">
                         <h2>Top selling products</h2>
+                        <BasicTable/>
                     </div>
                 </div>
                 <div className="col-span-4">
