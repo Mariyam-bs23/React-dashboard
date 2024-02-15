@@ -6,17 +6,25 @@ import {
   Routes,
   BrowserRouter
 } from "react-router-dom";
+import ProfilePage from './pages/profile-page';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />}>
+          <Route 
+            path="/" 
+            element={<LoginPage />}/>
+          <Route 
+            path="login" 
+            element={<LoginPage />}/>
           <Route
             path="dashboard"
-            element={<Dashboard/>}
-          />
-        </Route>
+            element={<Dashboard/>}>
+          </Route>
+            <Route
+              path="profile"
+              element={<ProfilePage/>}/>
       </Routes>
     </BrowserRouter>
   );

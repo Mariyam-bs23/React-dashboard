@@ -1,18 +1,24 @@
 import { Link } from "react-router-dom"
+import HomeIcon from '@mui/icons-material/Home';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import PersonIcon from '@mui/icons-material/Person';
 
 const SideNav = () => {
     const nav_items = [
         {
+            icon: <HomeIcon/>,
             title : "Home",
-            path : "/",
+            path : "/dashboard",
         },
         {
+            icon: <BarChartIcon/>,
             title : "Analytics",
-            path : "/",
+            path : "/dashboard",
         },
         {
-            title : "Settings",
-            path : "/",
+            icon: <PersonIcon/>,
+            title : "Account",
+            path : "/profile",
         },
     ];
 
@@ -24,7 +30,8 @@ const SideNav = () => {
             <ul className="px-5">
                 {nav_items && nav_items.length > 0 && nav_items.map((value , index) => {
                     return(
-                        <li key={index} className="py-3 px-3 mt-3 transition-all ease-out duration-200 rounded-lg text-slate-800 hover:bg-black hover:text-white">
+                        <li key={index} className="flex items-center gap-2 py-3 px-3 mt-3 transition-all ease-out duration-200 rounded-lg text-slate-800 hover:bg-black hover:text-white">
+                            {value.icon}
                             <Link className="block" to={value.path}>{value.title}</Link>
                         </li>
                     )
