@@ -61,8 +61,8 @@ const Dashboard = () => {
                            },
                          ]}/>
                     </div>
-                    <div className="mt-10">
-                        <h2>Top selling products</h2>
+                    <div className="mt-16">
+                        <h2 className="mb-4">Top selling products</h2>
                         <BasicTable/>
                     </div>
                 </div>

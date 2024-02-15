@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
+    h2{
+        @apply text-xl;
+    }
+}
+
 @layer components{
     .avatar *{
         @apply pointer-events-none;

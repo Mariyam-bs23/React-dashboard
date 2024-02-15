@@ -1,10 +1,16 @@
-import {useState, useEffect , useReducer} from 'react'
+import {useState, useEffect } from 'react';
+import FilterListIcon from '@mui/icons-material/FilterList';
+import SortIcon from '@mui/icons-material/Sort';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getSortedRowModel,
+  getPaginationRowModel
 } from '@tanstack/react-table'
 import axios from 'axios'
 
@@ -13,9 +19,6 @@ const columnHelper = createColumnHelper()
 const columns = [
   columnHelper.accessor(row => row.id,  {
     id: 'id',
-    // cell: (props) => {
-    //     return props?.table?.getSortedRowModel()?.flatRows?.indexOf(props?.row)+1;
-    //   },
     header: () => <span>S.No</span>,
   }),
   columnHelper.accessor(row => row.title, {
@@ -35,8 +38,15 @@ const columns = [
   }),
   columnHelper.accessor(row => row.rating.rate, {
     id: "rate",
-    header: () => 'Rate',
-    cell: info => info.renderValue(),
+    header: (info) => <span 
+    className='cursor-pointer'
+     onClick= {info.column.getToggleSortingHandler()}
+     >Rate{
+     {
+      asc: <FilterListIcon className='rotate-180 ml-2'/>,
+      desc: <FilterListIcon className='ml-2'/>,
+    }[info.column.getIsSorted()] ?? <SortIcon className='ml-2'/>}
+     </span>
   }),
 ]
 
@@ -53,7 +63,14 @@ const BasicTable = () => {
   const table = useReactTable({
     data,
     columns,
+    getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+          pageSize: 5,
+      },
+  },
   })
 
   return (
@@ -66,32 +83,85 @@ const BasicTable = () => {
                 <th className='font-medium' key={header.id}>
                   {header.isPlaceholder
                     ? null
-                    : flexRender(
+                    :  <div>
+                      {flexRender(
                         header.column.columnDef.header,
-                        header.getContext()
+                        header.getContext(),
                       )}
+                    </div>
+                    }
                 </th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody>
-        {table.getRowModel().rows.map((row, i) => {
-             if(row.original.rating.rate > 4){
+        {table.getRowModel().rows.map((row) => {
                 return(
                     <tr className='h-20 border-b border-slate-400/40' key={row.id}>
                     {row.getVisibleCells().map(cell =>(
-                          <td className='min-w-40 text-center' key={cell.id}>
-                            {cell.id.includes("id") ? i+1 : flexRender(cell.column.columnDef.cell, cell.getContext())}
+                          <td className='min-w-40 text-center capitalize' key={cell.id}>
+                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
                             {console.log("cell" ,cell.id.includes("id"))}
                         </td>
                       ))}
                   </tr>
                 );
-             }
             })}
         </tbody>
       </table>
+
+      <div className="flex items-center justify-end mt-5 gap-2">
+        <button
+          className="rounded-md p-2 text-medium bg-red-400 text-white cursor-pointer"
+          onClick={() => table.setPageIndex(0)}
+          disabled={!table.getCanPreviousPage()}
+        >
+          <SkipPreviousIcon/>
+        </button>
+        <button
+          className="rounded-md p-2 text-medium bg-red-400 text-white cursor-pointer"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          <ArrowRightIcon className='rotate-180'/>
+        </button>
+        <button
+          className="rounded-md p-2 text-medium bg-red-400 text-white cursor-pointer"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          <ArrowRightIcon/>
+        </button>
+        <button
+          className="rounded-md p-2 text-medium bg-red-400 text-white cursor-pointer"
+          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+          disabled={!table.getCanNextPage()}
+        >
+          <SkipPreviousIcon  className='rotate-180'/>
+        </button>
+        <span className="flex items-center gap-1 ml-3">
+          <div>Page</div>
+          <strong>
+            {table.getState().pagination.pageIndex + 1} of{' '}
+            {table.getPageCount()}
+          </strong>
+        </span>
+        <label>Show : </label>
+        <select
+          value={table.getState().pagination.pageSize}
+          className='bg-white px-4 py-2 outline-none border border-slate-400/40'
+          onChange={e => {
+            table.setPageSize(Number(e.target.value))
+          }}
+        >
+          {[5 ,10, 15 , 20].map(pageSize => (
+            <option key={pageSize} value={pageSize}>
+               {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   )
 }
