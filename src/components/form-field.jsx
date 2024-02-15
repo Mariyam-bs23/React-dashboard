@@ -1,8 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export function InputField({ register, name, ...rest }) {
-  return <input {...register(name)} {...rest} />;
+export function InputField({ register, name, customClass, ...rest }) {
+  return <input {...register(name)} {...rest} className={`${customClass}`} />;
 }
 
 export function EmailField({register, name, customClass , ...rest}) {
