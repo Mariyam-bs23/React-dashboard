@@ -102,7 +102,6 @@ const BasicTable = () => {
                     {row.getVisibleCells().map(cell =>(
                           <td className='min-w-40 text-center capitalize' key={cell.id}>
                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                            {console.log("cell" ,cell.id.includes("id"))}
                         </td>
                       ))}
                   </tr>
@@ -113,28 +112,28 @@ const BasicTable = () => {
 
       <div className="flex items-center justify-end mt-5 gap-2">
         <button
-          className="rounded-md p-2 text-medium bg-red-400 text-white cursor-pointer"
+          className="rounded-md p-1 text-medium bg-gray-600 text-white cursor-pointer"
           onClick={() => table.setPageIndex(0)}
           disabled={!table.getCanPreviousPage()}
         >
           <SkipPreviousIcon/>
         </button>
         <button
-          className="rounded-md p-2 text-medium bg-red-400 text-white cursor-pointer"
+          className="rounded-md p-1 text-medium bg-gray-600 text-white cursor-pointer"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
           <ArrowRightIcon className='rotate-180'/>
         </button>
         <button
-          className="rounded-md p-2 text-medium bg-red-400 text-white cursor-pointer"
+          className="rounded-md p-1 text-medium bg-gray-600 text-white cursor-pointer"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
           <ArrowRightIcon/>
         </button>
         <button
-          className="rounded-md p-2 text-medium bg-red-400 text-white cursor-pointer"
+          className="rounded-md p-1 text-medium bg-gray-600 text-white cursor-pointer"
           onClick={() => table.setPageIndex(table.getPageCount() - 1)}
           disabled={!table.getCanNextPage()}
         >

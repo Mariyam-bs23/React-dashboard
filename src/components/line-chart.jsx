@@ -25,8 +25,11 @@ const LineChart = (props) => {
                     boxWidth: 100,
                     boxHeight: 100
                 }
-              }
-            }
+              },
+            },
+            animation: {
+              duration: 2000
+            },
           }}
       />
     )
