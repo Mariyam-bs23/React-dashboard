@@ -4,7 +4,7 @@ import SideNav from "../components/side-nav";
 import Header from "../components/header";
 
 const ProfilePage = () => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
 
     useEffect(()=>{
         let USER_TOKEN = sessionStorage.getItem("token") ? JSON.parse(sessionStorage.getItem("token")) : undefined;
@@ -12,8 +12,8 @@ const ProfilePage = () => {
         const AuthStr = "Bearer " + USER_TOKEN; 
         axios.get("https://dummyjson.com/auth/me", { headers: { Authorization: AuthStr } })
          .then(response => {
-            console.log("hello",response.data)
-             setUser({...response.data})
+            console.log(response.data !== undefined)
+             setUser(response.data)
           })
          .catch((error) => {
              console.log('error ' , error);
@@ -24,7 +24,7 @@ const ProfilePage = () => {
         <div className="pl-52">
         <SideNav/>
         <Header/>
-         {user  ? 
+        {user  ? 
          <div className="px-8 mt-8 grid grid-cols-12 gap-8">
          <div className="col-span-6">
              <div className="rounded-lg border border-gray-400/40 shadow-md">
@@ -73,7 +73,8 @@ const ProfilePage = () => {
              </div>
          </div>
         </div>
-        : <h2 className="px-8">No user to show</h2>} 
+        : <h2 className="px-8">No user to show</h2>}
+       
     </div>
     )
 }
