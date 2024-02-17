@@ -7,24 +7,29 @@ import {
   BrowserRouter
 } from "react-router-dom";
 import ProfilePage from './pages/profile-page';
+import SideNav from './components/side-nav';
+import Header from './components/header';
+import DashboardLayout from './layout/layout';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route 
-            path="/" 
-            element={<LoginPage />}/>
-          <Route 
-            path="login" 
-            element={<LoginPage />}/>
+        <Route 
+          path="login" 
+          element={<LoginPage />}/>
+        <Route 
+          path="/" 
+          element={<LoginPage />}/>
+        <Route path="/dashboard" element={<DashboardLayout/>}>    
           <Route
-            path="dashboard"
+            path="/dashboard"
             element={<Dashboard/>}>
           </Route>
-            <Route
-              path="profile"
-              element={<ProfilePage/>}/>
+          <Route
+          path="profile"
+          element={<ProfilePage/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
