@@ -12,7 +12,7 @@ const ProfilePage = () => {
         const AuthStr = "Bearer " + USER_TOKEN; 
         axios.get("https://dummyjson.com/auth/me", { headers: { Authorization: AuthStr } })
          .then(response => {
-            console.log(response.data)
+            console.log("hello",response.data)
              setUser({...response.data})
           })
          .catch((error) => {
@@ -24,7 +24,7 @@ const ProfilePage = () => {
         <div className="pl-52">
         <SideNav/>
         <Header/>
-        {user  ? 
+         {user  ? 
          <div className="px-8 mt-8 grid grid-cols-12 gap-8">
          <div className="col-span-6">
              <div className="rounded-lg border border-gray-400/40 shadow-md">
@@ -73,8 +73,7 @@ const ProfilePage = () => {
              </div>
          </div>
         </div>
-        : <h2 className="px-8">No user to show</h2>}
-       
+        : <h2 className="px-8">No user to show</h2>} 
     </div>
     )
 }

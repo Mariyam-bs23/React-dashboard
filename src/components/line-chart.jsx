@@ -1,11 +1,13 @@
 import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
+import { useMemo } from 'react';
 
 const LineChart = (props) => {   
   const {dataset , labels } = props;
+  // const chartData = useMemo(() => dataset.slice(), [dataKey, dataset])
     return(
         <Line
-        datasetIdKey='id'
+        datasetIdKey={Math.random()}
         data={{
           labels:labels,
           datasets: Array.from(dataset)
@@ -27,6 +29,7 @@ const LineChart = (props) => {
                 }
               },
             },
+            responsive: true,
             animation: {
               duration: 2000
             },
