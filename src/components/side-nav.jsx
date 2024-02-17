@@ -18,7 +18,7 @@ const SideNav = () => {
         {
             icon: <PersonIcon/>,
             title : "Account",
-            path : "/profile",
+            path : "profile",
         },
     ];
 

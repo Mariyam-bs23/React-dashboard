@@ -22,8 +22,8 @@ const ProfilePage = () => {
 
     return(
         <div className="pl-52">
-        <SideNav/>
-        <Header/>
+        {/* <SideNav/>
+        <Header/> */}
         {user  ? 
          <div className="px-8 mt-8 grid grid-cols-12 gap-8">
          <div className="col-span-6">
