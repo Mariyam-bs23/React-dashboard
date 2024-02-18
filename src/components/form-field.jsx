@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 export function InputField({ register, name, customClass, ...rest }) {
-  return <input {...register(name)} {...rest} className={`${customClass}`} />;
+  return <input {...register(name)} {...rest} className={`${customClass}  bg-gray-200/50`} />;
 }
 
 export function EmailField({register, name, customClass , ...rest}) {
@@ -19,7 +19,7 @@ export function EmailField({register, name, customClass , ...rest}) {
           },
           })}
           aria-invalid={errors.email ? "true" : "false"} 
-          className={`${customClass}`}
+          className={`${customClass} bg-gray-200/50`}
           id="email"
           type="email"
           {...rest}
@@ -33,7 +33,7 @@ export function PassWordField({ register, name  , customClass, ...rest }) {
   return(
     <React.Fragment>
       <input 
-        className={`${customClass}`}
+        className={`${customClass}  bg-gray-200/50`}
         id="password"
         {...register("password", {
           required: "required",
