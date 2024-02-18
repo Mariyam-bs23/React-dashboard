@@ -69,7 +69,7 @@ const ProfilePage = () => {
              </div>
          </div>
         </div>
-        : <h2 className="px-8">No user to show</h2>}
+        : <h2 className="px-8">Loading details ... </h2>}
        
     </div>
     )
