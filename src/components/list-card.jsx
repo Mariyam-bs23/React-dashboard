@@ -1,6 +1,6 @@
 const CardList = (props) => {
     const { cardHeading , children, show, setShow, customClass} = props;
-    console.log("show",show)
+
     return(
         
         <div>
