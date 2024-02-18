@@ -8,7 +8,8 @@ import {
     flexRender,
     getCoreRowModel,
     useReactTable,
-    getPaginationRowModel
+    getPaginationRowModel,
+    getFilteredRowModel
   } from '@tanstack/react-table'
 
 const columnHelper = createColumnHelper()
@@ -17,7 +18,8 @@ const ProductPage = () => {
     const [data, setData] = useState([]);
     const [categories, setCategories] = useState([]);
     const [updateItem, setUpdateItem] = useState(null)
-    const [isEdit, setIsEdit] = useState(false)
+    const [isEdit, setIsEdit] = useState(false);
+    const [filtering, setFiltering] = useState('');
     const titleInputRef = useRef();
     const priceInputRef = useRef();
     const categoryInputRef = useRef();
@@ -87,6 +89,7 @@ const ProductPage = () => {
         axios.delete(`https://dummyjson.com/products/${item_info.id}`)
         .then(response =>  console.log("deleted item ", response.data))
         .catch(error => console.log(error));
+        alert("Please check your console! You will see a key property added to the response : isDeleted!")
     }
     const handleEditItem = (e) => {
         let item_info = e.row.original;
@@ -105,6 +108,7 @@ const ProductPage = () => {
          axios.put(`https://dummyjson.com/products/${item_info.id}`, {...updatedData} )
         .then(response => console.log("updated data ", response.data))
         .catch(error => console.log(error));
+        alert("Please check your console!")
     }
     
     const table = useReactTable({
@@ -112,13 +116,21 @@ const ProductPage = () => {
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        getFilteredRowModel : getFilteredRowModel(),
+        state : {
+            globalFilter : filtering
+        },
+        onGlobalFilterChange : setFiltering
       })
 
     return(
         <div className="pl-52 mt-8">
             <div className="px-8">
-                <h2>Products</h2>
-                <table className='text-gray-800 w-full mt-5'>
+                <div className="flex items-center justify-between">
+                    <h2>Products</h2>
+                    <input className="px-4 py-2 border border-slate-400/40 outline-none" placeholder="Search ..." type="text" value={filtering} onChange={e => setFiltering(e.target.value)}/>
+                </div>
+                <table className='text-gray-800 w-full mt-8'>
                     <thead>
                     {table.getHeaderGroups().map(headerGroup => (
                         <tr className='border-y border-slate-400/40 h-14' key={headerGroup.id}>
