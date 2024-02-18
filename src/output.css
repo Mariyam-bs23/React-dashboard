@@ -645,6 +645,10 @@ h2 {
   margin-top: 2rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -723,6 +727,22 @@ h2 {
 
 .max-h-\[900px\] {
   max-height: 900px;
+}
+
+.max-h-\[950px\] {
+  max-height: 950px;
+}
+
+.max-h-\[750px\] {
+  max-height: 750px;
+}
+
+.max-h-\[400px\] {
+  max-height: 400px;
+}
+
+.max-h-\[500px\] {
+  max-height: 500px;
 }
 
 .\!w-12 {
@@ -812,6 +832,10 @@ h2 {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .overflow-y-hidden {
@@ -1131,6 +1155,16 @@ h2 {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-yellow-500 {
+  --tw-text-opacity: 1;
+  color: rgb(234 179 8 / var(--tw-text-opacity));
+}
+
+.text-yellow-400 {
+  --tw-text-opacity: 1;
+  color: rgb(250 204 21 / var(--tw-text-opacity));
 }
 
 .shadow-md {
