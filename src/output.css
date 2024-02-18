@@ -609,6 +609,10 @@ h2 {
   margin-left: auto;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mr-6 {
   margin-right: 1.5rem;
 }
@@ -643,10 +647,6 @@ h2 {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mr-2 {
-  margin-right: 0.5rem;
 }
 
 .block {
@@ -705,14 +705,6 @@ h2 {
   height: 8rem;
 }
 
-.h-72 {
-  height: 18rem;
-}
-
-.h-auto {
-  height: auto;
-}
-
 .h-full {
   height: 100%;
 }
@@ -723,22 +715,6 @@ h2 {
 
 .max-h-72 {
   max-height: 18rem;
-}
-
-.max-h-\[900px\] {
-  max-height: 900px;
-}
-
-.max-h-\[950px\] {
-  max-height: 950px;
-}
-
-.max-h-\[750px\] {
-  max-height: 750px;
-}
-
-.max-h-\[400px\] {
-  max-height: 400px;
 }
 
 .max-h-\[500px\] {
@@ -950,9 +926,35 @@ h2 {
   background-color: rgb(126 34 206 / var(--tw-bg-opacity));
 }
 
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-slate-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
+
+.bg-slate-300\/50 {
+  background-color: rgb(203 213 225 / 0.5);
+}
+
+.bg-gray-300\/50 {
+  background-color: rgb(209 213 219 / 0.5);
+}
+
+.bg-gray-100\/50 {
+  background-color: rgb(243 244 246 / 0.5);
+}
+
+.bg-gray-200\/50 {
+  background-color: rgb(229 231 235 / 0.5);
 }
 
 .object-cover {
@@ -1155,11 +1157,6 @@ h2 {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-yellow-500 {
-  --tw-text-opacity: 1;
-  color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 
 .text-yellow-400 {
