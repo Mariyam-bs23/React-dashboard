@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import HomeIcon from '@mui/icons-material/Home';
-import BarChartIcon from '@mui/icons-material/BarChart';
 import PersonIcon from '@mui/icons-material/Person';
+import CategoryIcon from '@mui/icons-material/Category';
 
 const SideNav = () => {
     const nav_items = [
@@ -11,7 +11,7 @@ const SideNav = () => {
             path : "/dashboard",
         },
         {
-            icon: <BarChartIcon/>,
+            icon: <CategoryIcon/>,
             title : "Products",
             path : "product",
         },
