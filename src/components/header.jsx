@@ -2,7 +2,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Avatar from 'react-avatar';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Header = () => {
@@ -10,6 +10,7 @@ const Header = () => {
     const [showNotification, setShowNotification] = useState(false);
     const [showAccountDropdown, setAccountDropdown] = useState(false);
     const [user, setUser] = useState({});
+    const navigate = useNavigate(); 
 
     useEffect(()=>{
         let USER_TOKEN = sessionStorage.getItem("token") ? JSON.parse(sessionStorage.getItem("token")) : undefined;
@@ -31,6 +32,14 @@ const Header = () => {
     }
     const handleAccount = () =>{
         setAccountDropdown(!showAccountDropdown);
+    }
+    const handleLogout = () => {
+        let USER_TOKEN = sessionStorage.getItem("token") ? JSON.parse(sessionStorage.getItem("token")) : undefined;
+
+       if(USER_TOKEN){
+           sessionStorage.removeItem("token");
+       }
+       navigate('/login');
     }
 
     window.addEventListener("click" , e => {
@@ -69,7 +78,9 @@ const Header = () => {
                     <li className='p-1 '>
                         <Link to={'profile'} className='px-2 py-3 pb-4 rounded-lg hover:bg-slate-400/10 block border-b border-slate-400/40'>Profile</Link>
                     </li>
-                    <li className='bg-black px-4 py-3 mt-4 text-white cursor-pointer text-center rounded-lg'>Logout</li>
+                    <li
+                    onClick={handleLogout} 
+                    className='bg-black px-4 py-3 mt-4 text-white cursor-pointer text-center rounded-lg'>Logout</li>
                 </ul>
             </div>
         </div>
