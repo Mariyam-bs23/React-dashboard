@@ -9,6 +9,7 @@ import axios from "axios";
 const Dashboard = () => {
     const [topCustomers, setTopCustomers] = useState([]);
     const [show, setShow] = useState(false);
+    const [show2, setShow2] = useState(false);
 
     useEffect(()=>{
         axios.get("https://fakestoreapi.com/users")
@@ -98,8 +99,8 @@ const Dashboard = () => {
                             })}
                         </ul>
                     </CardList>
-                    <CardList customClass="mt-8" cardHeading={"Top countries"} show={show} setShow={setShow}>
-                        <ul className={`overflow-y-hidden transition-all ease-out duration-300 ${show ? 'max-h-[900px] h-auto' : 'max-h-72 h-72'}`}>
+                    <CardList customClass="mt-8" cardHeading={"Top countries"} show={show2} setShow={setShow2}>
+                        <ul className={`overflow-y-hidden transition-all ease-out duration-300 ${show2 ? 'max-h-[900px] h-auto' : 'max-h-72 h-72'}`}>
                             {topCustomers && topCustomers.length > 0 && topCustomers.map((value , index) => {
                                 return(
                                     <li key={index} className="flex items-center py-3">
