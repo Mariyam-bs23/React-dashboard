@@ -6,7 +6,6 @@ const ProfilePage = () => {
 
     useEffect(()=>{
         let USER_TOKEN = sessionStorage.getItem("token") ? JSON.parse(sessionStorage.getItem("token")) : undefined;
-        console.log(USER_TOKEN)
         const AuthStr = "Bearer " + USER_TOKEN; 
         axios.get("https://dummyjson.com/auth/me", { headers: { Authorization: AuthStr } })
          .then(response => {

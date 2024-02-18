@@ -86,7 +86,6 @@ const Dashboard = () => {
                     <CardList cardHeading={"Top customers"} show={show} setShow={setShow}>
                         <ul className={`transition-all ease-out duration-300 ${show ? 'max-h-[500px] overflow-y-auto' : 'max-h-72 overflow-y-hidden'}`}>
                             {topCustomers && topCustomers.length > 0 && topCustomers.map((value , index) => {
-                                console.log("value",value)
                                 return(
                                     <li key={index} className="flex items-center py-3 px-2">
                                         <div className="rounded-full w-11 h-11 bg-gray-200 flex items-center justify-center">
