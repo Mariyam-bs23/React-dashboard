@@ -8,13 +8,19 @@ import axios from "axios";
 
 const Dashboard = () => {
     const [topCustomers, setTopCustomers] = useState([]);
+    const [topProducts, setTopProducts] = useState([]);
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
 
     useEffect(()=>{
-        axios.get("https://fakestoreapi.com/users")
-        .then(response => setTopCustomers(response.data))
+        axios.get("https://dummyjson.com/users")
+        .then(response => setTopCustomers(response.data.users))
         .catch(error => console.log(error));
+
+        axios.get("https://dummyjson.com/products")
+        .then(response => {
+            setTopProducts(response.data.products);
+        }).catch(error => console.log(error));
     },[])
 
     return(
@@ -78,10 +84,11 @@ const Dashboard = () => {
                 </div>
                 <div className="col-span-4">
                     <CardList cardHeading={"Top customers"} show={show} setShow={setShow}>
-                        <ul className={`overflow-y-hidden transition-all ease-out duration-300 ${show ? 'max-h-[900px] h-auto' : 'max-h-72 h-72'}`}>
+                        <ul className={`transition-all ease-out duration-300 ${show ? 'max-h-[500px] overflow-y-auto' : 'max-h-72 overflow-y-hidden'}`}>
                             {topCustomers && topCustomers.length > 0 && topCustomers.map((value , index) => {
+                                console.log("value",value)
                                 return(
-                                    <li key={index} className="flex items-center py-3">
+                                    <li key={index} className="flex items-center py-3 px-2">
                                         <div className="rounded-full w-11 h-11 bg-gray-200 flex items-center justify-center">
                                         {value.image ? 
                                             <img className="w-full h-full rounded-[inherit] object-cover" src={value.image} alt="img"/>
@@ -90,7 +97,7 @@ const Dashboard = () => {
                                         }                
                                         </div>
                                         <div className="flex flex-col gap-1 ml-4">
-                                            <h4 className="text-md text-slate-800 font-bold capitalize">{value.name.firstname ? value.name.firstname : ''} {value.name.lastname}</h4>
+                                            <h4 className="text-md text-slate-800 font-bold capitalize">{value.firstName || ''} {value.lastName || ''}</h4>
                                             <p className="text-sm text-gray-400">45 purchases</p>
                                         </div>
                                         <span className="text-lg font-medium text-slate-800 ml-auto">$45.9K</span>
@@ -99,25 +106,27 @@ const Dashboard = () => {
                             })}
                         </ul>
                     </CardList>
-                    <CardList customClass="mt-8" cardHeading={"Top countries"} show={show2} setShow={setShow2}>
-                        <ul className={`overflow-y-hidden transition-all ease-out duration-300 ${show2 ? 'max-h-[900px] h-auto' : 'max-h-72 h-72'}`}>
-                            {topCustomers && topCustomers.length > 0 && topCustomers.map((value , index) => {
-                                return(
-                                    <li key={index} className="flex items-center py-3">
-                                        <div className="rounded-full w-11 h-11 bg-gray-200 flex items-center justify-center">
-                                        {value.image ? 
-                                            <img className="w-full h-full rounded-[inherit] object-cover" src={value.image} alt="img"/>
-                                            : 
-                                            <InsertPhotoIcon className="rounded-[inherit] object-cover text-gray-600"/>
-                                        }                
-                                        </div>
-                                        <div className="flex flex-col gap-1 ml-4">
-                                            <h4 className="text-md text-slate-800 font-bold capitalize">{value.name.firstname ? value.name.firstname : ''} {value.name.lastname}</h4>
-                                            <p className="text-sm text-gray-400">45 purchases</p>
-                                        </div>
-                                        <span className="text-lg font-medium text-slate-800 ml-auto">$45.9K</span>
-                                    </li>
-                                );
+                    <CardList customClass="mt-8" cardHeading={"Top rated products"} show={show2} setShow={setShow2}>
+                        <ul className={`transition-all ease-out duration-300 ${show2 ? 'max-h-[500px] overflow-y-auto' : 'max-h-72 overflow-y-hidden'}`}>
+                            {topProducts && topProducts.length > 0 && topProducts.map((value , index) => {
+                                if(value.rating > 4.5){
+                                    return(
+                                        <li key={index} className="flex items-center py-3 px-2">
+                                            <div className="rounded-full w-11 h-11 bg-gray-200 flex items-center justify-center">
+                                            {value.images[4] ? 
+                                                <img className="w-full h-full rounded-[inherit] object-cover" src={value.images[4]} alt="img"/>
+                                                : 
+                                                <InsertPhotoIcon className="rounded-[inherit] object-cover text-gray-600"/>
+                                            }                
+                                            </div>
+                                            <div className="flex flex-col gap-1 ml-4">
+                                                <h4 className="text-md text-slate-800 font-bold capitalize">{value.title}</h4>
+                                                <p className="text-sm text-gray-400">{value.brand}</p>
+                                            </div>
+                                            <span className="text-lg font-medium text-slate-800 ml-auto"><span className="text-yellow-400 text-md mr-2">★</span>{value.rating}</span>
+                                        </li>
+                                    );
+                                }
                             })}
                         </ul>
                     </CardList>

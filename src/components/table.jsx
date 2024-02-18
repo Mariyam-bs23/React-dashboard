@@ -31,12 +31,12 @@ const columns = [
     header: () => 'Category',
     cell: info => info.renderValue(),
   }),
-  columnHelper.accessor(row => row.rating.count, {
+  columnHelper.accessor(row => row.stock, {
     id: "count",
     header: () => 'Stock',
     cell: info => info.renderValue(),
   }),
-  columnHelper.accessor(row => row.rating.rate, {
+  columnHelper.accessor(row => row.rating, {
     id: "rate",
     header: (info) => <span 
     className='cursor-pointer'
@@ -54,9 +54,9 @@ const BasicTable = () => {
   const [data, setData] = useState([]);
 
   useEffect(()=>{
-    axios.get("https://fakestoreapi.com/products")
+    axios.get("https://dummyjson.com/products")
     .then(response => {
-        setData(response.data);
+        setData(response.data.products);
     }).catch(error => console.log(error));
   },[])
 
