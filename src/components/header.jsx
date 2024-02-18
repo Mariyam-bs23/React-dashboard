@@ -74,9 +74,9 @@ const Header = () => {
                 src={`${user.image ? user.image : ''}`}
                 onClick={handleAccount}
                 className='avatar bg-purple-700 cursor-pointer text-white rounded-full flex justify-center items-center flex-none w-10 h-10' unstyled={true}/>
-                <ul className={`absolute mt-4 right-8 shadow-md rounded-lg border border-slate-400/20 p-4 min-w-44 ${showAccountDropdown ? '' : 'hidden'}`}>
+                <ul className={`absolute mt-4 right-8 shadow-md rounded-lg border bg-white border-slate-400/20 p-4 min-w-44 ${showAccountDropdown ? '' : 'hidden'}`}>
                     <li className='p-1 '>
-                        <Link to={'profile'} className='px-2 py-3 pb-4 rounded-lg hover:bg-slate-400/10 block border-b border-slate-400/40'>Profile</Link>
+                        <Link to={'profile'} className='px-2 py-3 pb-4 hover:bg-slate-400/10 block border-b border-slate-400/40'>Profile</Link>
                     </li>
                     <li
                     onClick={handleLogout} 
