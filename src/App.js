@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import ProfilePage from './pages/profile-page';
 import DashboardLayout from './layout/layout';
+import ProductPage from './pages/product-page';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           <Route
           path="profile"
           element={<ProfilePage/>}/>
+          <Route
+          path="product"
+          element={<ProductPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

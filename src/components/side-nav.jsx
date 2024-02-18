@@ -12,8 +12,8 @@ const SideNav = () => {
         },
         {
             icon: <BarChartIcon/>,
-            title : "Analytics",
-            path : "/dashboard",
+            title : "Products",
+            path : "product",
         },
         {
             icon: <PersonIcon/>,
