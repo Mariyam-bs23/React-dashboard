@@ -19,8 +19,8 @@ const LoginPage = () => {
     return(
         <div className="bg-black/75 h-screen flex items-center justify-center">
             <FormCmp customClass="bg-white rounded-xl flex flex-col p-10" onSubmit={onSubmit}>
-                <InputField customClass="w-26 p-4" name="username"/>
-                <PassWordField customClass={`w-26 mt-4 p-4 outline-0 `} name="password"/>
+                <InputField placeholder="Username" customClass="w-26 p-4" name="username"/>
+                <PassWordField placeholder="Password" customClass={`w-26 mt-4 p-4 outline-0 `} name="password"/>
                 <button className="px-6 py-4 bg-black rounded-md text-white mt-6">LOGIN</button>
             </FormCmp>
         </div>
