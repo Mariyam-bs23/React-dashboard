@@ -1,7 +1,5 @@
 import { useState , useEffect } from "react";
 import axios from "axios";
-import SideNav from "../components/side-nav";
-import Header from "../components/header";
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);

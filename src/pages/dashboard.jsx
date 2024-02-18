@@ -1,5 +1,3 @@
-import Header from "../components/header";
-import SideNav from "../components/side-nav";
 import StatisticsCard from "../components/statistics-card";
 import LineChart from "../components/line-chart";
 import BasicTable from "../components/table";

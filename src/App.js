@@ -7,8 +7,6 @@ import {
   BrowserRouter
 } from "react-router-dom";
 import ProfilePage from './pages/profile-page';
-import SideNav from './components/side-nav';
-import Header from './components/header';
 import DashboardLayout from './layout/layout';
 
 function App() {

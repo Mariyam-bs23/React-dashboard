@@ -1,6 +1,5 @@
-import { useEffect } from "react";
 import FormCmp from "../components/form";
-import { EmailField,InputField, PassWordField } from "../components/form-field";
+import { InputField, PassWordField } from "../components/form-field";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
