@@ -75,7 +75,7 @@ const BasicTable = () => {
 
   return (
     <div className="p-2">
-      <table className='text-gray-800'>
+      <table className='text-gray-800 w-full'>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr className='border-y border-slate-400/40 h-14' key={headerGroup.id}>
