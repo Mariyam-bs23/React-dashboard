@@ -15,7 +15,6 @@ const LineChart = (props) => {
             plugins: {
               title: {
                 display: true,
-                // text: "Earnings",
                 position: "top",
                 align: "start"
               },
