@@ -20,8 +20,6 @@ const Dashboard = () => {
 
     return(
         <div className="pl-52">
-            {/* <SideNav/>
-            <Header/> */}
             <div className="px-8 mt-8 grid grid-cols-12 gap-8">
                 <div className="col-span-8">
                     <div className="grid grid-cols-3 gap-6">
