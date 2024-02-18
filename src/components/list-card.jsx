@@ -1,9 +1,8 @@
-import { useState } from "react";
-
 const CardList = (props) => {
     const { cardHeading , children, show, setShow, customClass} = props;
-
+    console.log("show",show)
     return(
+        
         <div>
             <div className={`flex justify-between items-center pb-3 border-b border-slate-400/40 ${customClass}`}>
                 <h3 className="text-2xl">{cardHeading}</h3>
