@@ -3,7 +3,7 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import Avatar from 'react-avatar';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosinstance from '../utils/axiosinstance';
 
 const Header = () => {
     const [showSearch, setShowSearch] = useState(false);
@@ -13,15 +13,14 @@ const Header = () => {
     const navigate = useNavigate(); 
 
     useEffect(()=>{
-        let USER_TOKEN = sessionStorage.getItem("token") ? JSON.parse(sessionStorage.getItem("token")) : undefined;
-        const AuthStr = "Bearer " + USER_TOKEN; 
-        axios.get("https://dummyjson.com/auth/me", { headers: { Authorization: AuthStr } })
-         .then(response => {
-             setUser({...response.data})
-          })
-         .catch((error) => {
-             console.log('error ' + error);
-          });
+        axiosinstance.get("/auth/me")
+        .then(response => {
+           console.log(response.data !== undefined)
+            setUser(response.data)
+         })
+        .catch((error) => {
+            console.log('error ' , error);
+         });
     },[])
 
     const handleSearch = () => {
@@ -53,7 +52,7 @@ const Header = () => {
 
     return(
         <div className="px-8 py-10 flex items-center">
-            <h3>Hello {user.firstName}!</h3>
+            <h3>Hello {user.username}!</h3>
             <div className='flex items-center ml-auto mr-6'>
                 <SearchIcon 
                 onClick={e => handleSearch(e)}
@@ -70,7 +69,7 @@ const Header = () => {
             </div>
             <div className='pl-4 border-l border-slate-400/50'>
                 <Avatar 
-                name={`${!user.image ? `${user.firstName} ${user.lastName}` : ''}`}
+                name={`${!user.image ? `${user.username}` : ''}`}
                 src={`${user.image ? user.image : ''}`}
                 onClick={handleAccount}
                 className='avatar bg-purple-700 cursor-pointer text-white rounded-full flex justify-center items-center flex-none w-10 h-10' unstyled={true}/>
