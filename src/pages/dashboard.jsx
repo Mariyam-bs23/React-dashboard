@@ -12,6 +12,7 @@ const Dashboard = () => {
     const [topProducts, setTopProducts] = useState([]);
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
+    const baseUrl = process.env.REACT_APP_API_URL
 
     useEffect(() => {
         const fetchDashboardData = async () => {
@@ -25,8 +26,8 @@ const Dashboard = () => {
             try {
                 // Fetch dashboard data - axios interceptor will handle token refresh automatically
                 const [usersResponse, productsResponse] = await Promise.all([
-                    axiosinstance.get('/users'),
-                    axiosinstance.get('/products')
+                    axiosinstance.get(`${baseUrl}/users`),
+                    axiosinstance.get(`${baseUrl}/products`)
                 ]);
                 
                 setTopCustomers(usersResponse.data || []);

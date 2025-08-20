@@ -13,6 +13,7 @@ import {
   getPaginationRowModel
 } from '@tanstack/react-table'
 import axios from 'axios'
+import axiosinstance from '../utils/axiosinstance';
 
 const columnHelper = createColumnHelper()
 
@@ -56,7 +57,7 @@ const BasicTable = () => {
   const baseUrl = process.env.REACT_APP_API_URL
 
   useEffect(()=>{
-    axios.get(`${baseUrl}/products`)
+    axiosinstance.get(`${baseUrl}/products`)
     .then(response => {
         setData(response.data);
     }).catch(error => console.log(error));

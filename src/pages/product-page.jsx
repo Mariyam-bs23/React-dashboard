@@ -92,7 +92,7 @@ const ProductPage = () => {
         let item_info = e.row.original;
         const _filteredProducts = data.filter((_item) => _item.id !== item_info.id)
         setData(_filteredProducts)
-        axios.delete(`${baseUrl}/products/${item_info.id}`)
+        axiosinstance.delete(`${baseUrl}/products/${item_info.id}`)
         .then(response =>  console.log("deleted item ", response.data))
         .catch(error => console.log(error));
     }
@@ -120,7 +120,7 @@ const ProductPage = () => {
             )
         );
 
-        axios.put(`${baseUrl}/products/${item_info.id}`, {...updatedData})
+        axiosinstance.put(`${baseUrl}/products/${item_info.id}`, {...updatedData})
     }
     
     const table = useReactTable({
