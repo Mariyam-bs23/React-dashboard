@@ -16,6 +16,7 @@ import axios from 'axios'
 
 const columnHelper = createColumnHelper()
 
+
 const columns = [
   columnHelper.accessor(row => row.id,  {
     id: 'id',
@@ -52,11 +53,12 @@ const columns = [
 
 const BasicTable = () => {
   const [data, setData] = useState([]);
+  const baseUrl = process.env.REACT_APP_API_URL
 
   useEffect(()=>{
-    axios.get("https://dummyjson.com/products")
+    axios.get(`${baseUrl}/products`)
     .then(response => {
-        setData(response.data.products);
+        setData(response.data);
     }).catch(error => console.log(error));
   },[])
 

@@ -1,13 +1,11 @@
 import { useState , useEffect } from "react";
-import axios from "axios";
+import axiosinstance from "../utils/axiosinstance";
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
 
     useEffect(()=>{
-        let USER_TOKEN = sessionStorage.getItem("token") ? JSON.parse(sessionStorage.getItem("token")) : undefined;
-        const AuthStr = "Bearer " + USER_TOKEN; 
-        axios.get("https://dummyjson.com/auth/me", { headers: { Authorization: AuthStr } })
+        axiosinstance.get("/auth/me")
          .then(response => {
             console.log(response.data !== undefined)
              setUser(response.data)

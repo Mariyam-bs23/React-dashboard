@@ -23,19 +23,22 @@ const ProductPage = () => {
     const titleInputRef = useRef();
     const priceInputRef = useRef();
     const categoryInputRef = useRef();
+    const baseUrl = process.env.REACT_APP_API_URL
 
     useEffect(()=>{
-        axios.get("https://dummyjson.com/products")
+        axios.get(`${baseUrl}/products`)
         .then(response => {
-            setData(response.data.products);
+            setData(response.data);
         }).catch(error => console.log(error));
 
-        axios.get("https://dummyjson.com/products/categories")
+        axios.get("https://dummyjson.com/products/category-list")
         .then(response => {
             setCategories(response.data);
         }).catch(error => console.log(error));
         
     },[]);
+
+    console.log({baseUrl})
 
     const columns = [
         columnHelper.accessor(row => row.id,  {
@@ -86,15 +89,17 @@ const ProductPage = () => {
     
     const handleDeleteItem = (e) => {
         let item_info = e.row.original;
-        axios.delete(`https://dummyjson.com/products/${item_info.id}`)
+        const _filteredProducts = data.filter((_item) => _item.id !== item_info.id)
+        setData(_filteredProducts)
+        axios.delete(`${baseUrl}/products/${item_info.id}`)
         .then(response =>  console.log("deleted item ", response.data))
         .catch(error => console.log(error));
-        alert("Please check your console! You will see a key property added to the response : isDeleted!")
     }
     const handleEditItem = (e) => {
         let item_info = e.row.original;
         setIsEdit(item_info.id);
         setUpdateItem(item_info);
+    
     }
     const handleSaveInfo = (e) => {
         let item_info = e.row.original;
@@ -103,12 +108,18 @@ const ProductPage = () => {
         let updatedData = {
              title: titleInputRef.current.value, 
              price: priceInputRef.current.value,
-             category:categoryInputRef.current.value}
+            //  category: categoryInputRef.current.value
+        }
 
-         axios.put(`https://dummyjson.com/products/${item_info.id}`, {...updatedData} )
-        .then(response => console.log("updated data ", response.data))
-        .catch(error => console.log(error));
-        alert("Please check your console!")
+        setData(prevData => 
+            prevData.map(item => 
+                item.id === item_info.id 
+                    ? { ...item, ...updatedData }
+                    : item
+            )
+        );
+
+        axios.put(`${baseUrl}/products/${item_info.id}`, {...updatedData})
     }
     
     const table = useReactTable({

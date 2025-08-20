@@ -4,7 +4,8 @@ import BasicTable from "../components/table";
 import CardList from "../components/list-card";
 import { useEffect, useState } from "react";
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
-import axios from "axios";
+import axiosinstance from "../utils/axiosinstance";
+import { authUtils } from "../utils/authUtils";
 
 const Dashboard = () => {
     const [topCustomers, setTopCustomers] = useState([]);
@@ -12,16 +13,31 @@ const Dashboard = () => {
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
 
-    useEffect(()=>{
-        axios.get("https://dummyjson.com/users")
-        .then(response => setTopCustomers(response.data.users))
-        .catch(error => console.log(error));
+    useEffect(() => {
+        const fetchDashboardData = async () => {
+            // Check if user is authenticated before making API calls
+            if (!authUtils.isAuthenticated()) {
+                console.warn('User not authenticated, redirecting to login');
+                authUtils.logout('/login');
+                return;
+            }
 
-        axios.get("https://dummyjson.com/products")
-        .then(response => {
-            setTopProducts(response.data.products);
-        }).catch(error => console.log(error));
-    },[])
+            try {
+                // Fetch dashboard data - axios interceptor will handle token refresh automatically
+                const [usersResponse, productsResponse] = await Promise.all([
+                    axiosinstance.get('/users'),
+                    axiosinstance.get('/products')
+                ]);
+                
+                setTopCustomers(usersResponse.data || []);
+                setTopProducts(productsResponse.data || []);
+            } catch (error) {
+                console.error('Error fetching dashboard data:', error);
+            } 
+        };
+
+        fetchDashboardData();
+    }, []);
 
     return(
         <div className="pl-52">

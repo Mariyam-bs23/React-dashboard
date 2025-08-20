@@ -3,7 +3,10 @@ import { useForm } from "react-hook-form";
 
 const FormCmp = (props) => {
   const { defaultValues, children, onSubmit, customClass } = props;
-  const { handleSubmit, register, formState:{ errors } } = useForm({ defaultValues });
+  const { handleSubmit, register, formState:{ errors } } = useForm({ 
+    defaultValues,
+    mode: 'onSubmit'
+  });
 
 
   return (

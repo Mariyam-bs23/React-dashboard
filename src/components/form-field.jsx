@@ -38,8 +38,8 @@ export function PassWordField({ register, name  , customClass, ...rest }) {
         {...register("password", {
           required: "required",
           minLength: {
-              value: 5,
-              message: `Password must have minimum characters of 5`,
+              value: 4,
+              message: `Password must have minimum characters of 4`,
           },
         }
         )}
