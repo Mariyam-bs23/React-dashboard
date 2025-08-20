@@ -11,6 +11,7 @@ import {
     getPaginationRowModel,
     getFilteredRowModel
   } from '@tanstack/react-table'
+import axiosinstance from "../utils/axiosinstance";
 
 const columnHelper = createColumnHelper()
 
@@ -26,7 +27,7 @@ const ProductPage = () => {
     const baseUrl = process.env.REACT_APP_API_URL
 
     useEffect(()=>{
-        axios.get(`${baseUrl}/products`)
+        axiosinstance.get(`${baseUrl}/products`)
         .then(response => {
             setData(response.data);
         }).catch(error => console.log(error));
